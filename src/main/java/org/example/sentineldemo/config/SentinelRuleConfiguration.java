@@ -17,42 +17,49 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Properties;
 
-//@Component
+@Component
 public class SentinelRuleConfiguration implements ApplicationListener<ContextRefreshedEvent> {
 
-    private static final String remoteAddress = "10.105.210.225:8848";
+    private static final String KEY = "TestResource";
+    // nacos server ip
+    private static final String remoteAddress = "localhost:8848";
     // nacos group
-    private static final String groupId = "Sentinel_Demo";
+    private static final String groupId = "SENTINEL_GROUP";
     // nacos dataId
-    private static final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
+    private static final String dataId = "sentinel-demo-flow-rules";
+    // if change to true, should be config NACOS_NAMESPACE_ID
+    private static boolean isDemoNamespace = false;
+    // fill your namespace id,if you want to use namespace. for example: 0f5c7314-4983-4022-ad5a-347de1d1057d,you can get it on nacos's console
+//    private static final String NACOS_NAMESPACE_ID = "${namespace}";
 
     private static final String NACOS_NAMESPACE_ID = "SENTINEL";
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        Properties properties = new Properties();
-//        properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
-////        properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);
-//
-//        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, groupId,
-//                dataId,
-//                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
-//                }));
-//        FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
+        System.out.println("Init DataSourceInitFunc Auto");
+        Properties properties = new Properties();
+        properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
+//        properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);
 
-        final String remoteAddress = "127.0.0.1";
-        final int port = 6379;
-        final String ruleKey = "sentinel.rules.flow.ruleKey";
-        final String channel = "sentinel.rules.flow.channel";
+        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, groupId,
+                dataId,
+                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
+                }));
+        FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
 
-        Converter<String, List<FlowRule>> flowConfigParser = buildFlowConfigParser();
-        RedisConnectionConfig config = RedisConnectionConfig.builder()
-                .withHost(remoteAddress)
-                .withPort(port)
-                .build();
-        ReadableDataSource<String, List<FlowRule>> redisDataSource = new RedisDataSource<>(config,
-                ruleKey, channel, flowConfigParser);
-        FlowRuleManager.register2Property(redisDataSource.getProperty());
+//        final String remoteAddress = "127.0.0.1";
+//        final int port = 6379;
+//        final String ruleKey = "sentinel.rules.flow.ruleKey";
+//        final String channel = "sentinel.rules.flow.channel";
+
+//        Converter<String, List<FlowRule>> flowConfigParser = buildFlowConfigParser();
+//        RedisConnectionConfig config = RedisConnectionConfig.builder()
+//                .withHost(remoteAddress)
+//                .withPort(port)
+//                .build();
+//        ReadableDataSource<String, List<FlowRule>> redisDataSource = new RedisDataSource<>(config,
+//                ruleKey, channel, flowConfigParser);
+//        FlowRuleManager.register2Property(redisDataSource.getProperty());
     }
 
     private Converter<String, List<FlowRule>> buildFlowConfigParser() {

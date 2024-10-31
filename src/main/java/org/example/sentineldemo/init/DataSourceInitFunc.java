@@ -7,25 +7,31 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.nacos.api.PropertyKeyConst;
 
 import java.util.List;
-import java.util.Properties;
 
 public class DataSourceInitFunc implements InitFunc {
+
+    private static final String KEY = "TestResource";
+    // nacos server ip
+    private static final String remoteAddress = "localhost:8848";
+    // nacos group
+    private static final String groupId = "Sentinel_Demo";
+    // nacos dataId
+    private static final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
+    // if change to true, should be config NACOS_NAMESPACE_ID
+    private static boolean isDemoNamespace = false;
+    // fill your namespace id,if you want to use namespace. for example: 0f5c7314-4983-4022-ad5a-347de1d1057d,you can get it on nacos's console
+//    private static final String NACOS_NAMESPACE_ID = "${namespace}";
+
+    private static final String NACOS_NAMESPACE_ID = "SENTINEL";
 
     @Override
     public void init() {
         System.out.println("Init DataSourceInitFunc");
-        final String remoteAddress = "localhost:8848";
-//        final int port = 6379;
-//        final String ruleKey = "sentinel.rules.flow.ruleKey";
-//        final String channel = "sentinel.rules.flow.channel";
-        final String groupId = "Sentinel_Demo";
-        final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
-
         ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(remoteAddress, groupId, dataId,
-                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {}));
+                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
+                }));
         FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
 //        ------------redis----------------
 //        Converter<String, List<FlowRule>> flowConfigParser = buildFlowConfigParser();

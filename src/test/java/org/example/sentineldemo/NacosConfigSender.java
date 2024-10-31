@@ -29,8 +29,8 @@ public class NacosConfigSender {
 
     public static void main(String[] args) throws Exception {
         final String remoteAddress = "127.0.0.1:8848";
-        final String groupId = "Sentinel_Demo";
-        final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
+        final String groupId = "SENTINEL_GROUP";
+        final String dataId = "sentinel-demo-flow-rules";
         final String rule = "[\n"
                 + "  {\n"
                 + "    \"resource\": \"DemoService#bonjour\",\n"
@@ -44,8 +44,6 @@ public class NacosConfigSender {
 
         Properties properties = new Properties();
         properties.put("serverAddr", remoteAddress);
-        properties.put("username", "nacos");  // 设置 Nacos 用户名
-        properties.put("password", "nacos");  // 设置 Nacos 密码
 
         ConfigService configService = NacosFactory.createConfigService(properties);
         boolean isPublished = configService.publishConfig(dataId, groupId, rule);
