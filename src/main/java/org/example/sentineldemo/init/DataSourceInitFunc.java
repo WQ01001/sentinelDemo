@@ -18,17 +18,28 @@ public class DataSourceInitFunc implements InitFunc {
     public void init() {
         System.out.println("Init DataSourceInitFunc");
         final String remoteAddress = "localhost:8848";
+//        final int port = 6379;
+//        final String ruleKey = "sentinel.rules.flow.ruleKey";
+//        final String channel = "sentinel.rules.flow.channel";
         final String groupId = "Sentinel_Demo";
         final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
 
-        Properties properties = new Properties();
-        properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
-//        properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);
-
-        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, groupId,
-                dataId,
-                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
-                }));
+        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(remoteAddress, groupId, dataId,
+                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {}));
         FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
+//        ------------redis----------------
+//        Converter<String, List<FlowRule>> flowConfigParser = buildFlowConfigParser();
+//        RedisConnectionConfig config = RedisConnectionConfig.builder()
+//                .withHost(remoteAddress)
+//                .withPort(port)
+//                .build();
+//        ReadableDataSource<String, List<FlowRule>> redisDataSource = new RedisDataSource<>(config,
+//                ruleKey, channel, flowConfigParser);
+//        FlowRuleManager.register2Property(redisDataSource.getProperty());
     }
+
+//    private Converter<String, List<FlowRule>> buildFlowConfigParser() {
+//        return source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
+//        });
+//    }
 }

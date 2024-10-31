@@ -14,9 +14,10 @@
 
 package org.example.sentineldemo.demos.sentinel;
 
-import com.alibaba.cloud.demo.sentinel.api.FooService;
-import jdk.nashorn.internal.ir.annotations.Reference;
+import org.example.sentineldemo.service.FooService;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/demo")
 public class DemoController {
 
-    @Reference
+    @Resource
     private FooService fooService;
 
     private final DemoService demoService;

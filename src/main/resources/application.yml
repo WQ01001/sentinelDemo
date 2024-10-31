@@ -1,2 +1,15 @@
 server:
   port: 8088
+#spring:
+#  cloud:
+#    # alibaba哨兵
+#    sentinel:
+#      enabled: true
+#      # 默认情况下 sentinel 会在客户端首次调用的时候进行初始化，开始向控制台发送心跳包，取消sentinel控制台懒加载功
+#      eager: true
+#      transport:
+#        # 默认7890端口，假如被占用会自动7890开始依次+1扫描，直至找到未被占用的端口
+#        port: 7890
+#        # 配置Sentinel dashboard地址
+#        dashboard: 127.0.0.1:8619
+

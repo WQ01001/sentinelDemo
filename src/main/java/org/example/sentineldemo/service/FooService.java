@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.cloud.demo.sentinel.api;
+package org.example.sentineldemo.service;
 
 /**
  * 该接口为 Dubbo 的服务端、消费端公用的接口定义。
