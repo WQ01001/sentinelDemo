@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.example.sentineldemo.demos.sentinel;
+package org.example.sentineldemo.controller;
 
 import org.springframework.stereotype.Service;
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.example.sentineldemo.demos.sentinel;
+package org.example.sentineldemo.controller;
 
 import org.example.sentineldemo.service.FooService;
 import org.springframework.web.bind.annotation.*;

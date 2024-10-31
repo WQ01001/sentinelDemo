@@ -11,14 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example.sentineldemo.demos.sentinel;
+package org.example.sentineldemo.controller;
 
-import java.io.PrintWriter;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 
 /**
  * @author Eric Zhao
@@ -26,16 +21,16 @@ import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHan
 @Configuration
 public class SentinelWebConfig {
 
-    @Bean
-    public BlockExceptionHandler sentinelBlockExceptionHandler() {
-        return (request, response, e) -> {
-            // 429 Too Many Requests
-            response.setStatus(429);
-
-            PrintWriter out = response.getWriter();
-            out.print("Oops, blocked by Sentinel: " + e.getClass().getSimpleName());
-            out.flush();
-            out.close();
-        };
-    }
+//    @Bean
+//    public BlockExceptionHandler sentinelBlockExceptionHandler() {
+//        return (request, response, e) -> {
+//            // 429 Too Many Requests
+//            response.setStatus(429);
+//
+//            PrintWriter out = response.getWriter();
+//            out.print("Oops, blocked by Sentinel: " + e.getClass().getSimpleName());
+//            out.flush();
+//            out.close();
+//        };
+//    }
 }

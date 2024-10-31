@@ -18,6 +18,8 @@ package org.example.sentineldemo;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 
+import java.util.Properties;
+
 /**
  * Nacos config sender for demo.
  *
@@ -26,20 +28,28 @@ import com.alibaba.nacos.api.config.ConfigService;
 public class NacosConfigSender {
 
     public static void main(String[] args) throws Exception {
-        final String remoteAddress = "10.105.210.225:8848";
+        final String remoteAddress = "127.0.0.1:8848";
         final String groupId = "Sentinel_Demo";
         final String dataId = "com.alibaba.csp.sentinel.demo.flow.rule";
         final String rule = "[\n"
-            + "  {\n"
-            + "    \"resource\": \"DemoService#bonjour\",\n"
-            + "    \"controlBehavior\": 0,\n"
-            + "    \"count\": 1,\n"
-            + "    \"grade\": 1,\n"
-            + "    \"limitApp\": \"default\",\n"
-            + "    \"strategy\": 0\n"
-            + "  }\n"
-            + "]";
-        ConfigService configService = NacosFactory.createConfigService(remoteAddress);
-        System.out.println(configService.publishConfig(dataId, groupId, rule));
+                + "  {\n"
+                + "    \"resource\": \"DemoService#bonjour\",\n"
+                + "    \"controlBehavior\": 0,\n"
+                + "    \"count\": 1,\n"
+                + "    \"grade\": 1,\n"
+                + "    \"limitApp\": \"default\",\n"
+                + "    \"strategy\": 0\n"
+                + "  }\n"
+                + "]";
+
+        Properties properties = new Properties();
+        properties.put("serverAddr", remoteAddress);
+        properties.put("username", "nacos");  // 设置 Nacos 用户名
+        properties.put("password", "nacos");  // 设置 Nacos 密码
+
+        ConfigService configService = NacosFactory.createConfigService(properties);
+        boolean isPublished = configService.publishConfig(dataId, groupId, rule);
+
+        System.out.println("配置发布状态：" + (isPublished ? "成功" : "失败"));
     }
 }
