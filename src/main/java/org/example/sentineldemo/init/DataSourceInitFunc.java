@@ -14,7 +14,6 @@ import java.util.Properties;
 
 public class DataSourceInitFunc implements InitFunc {
 
-    private static final String KEY = "TestResource";
     // nacos server ip
     private static final String remoteAddress = "localhost:8848";
     // nacos group
@@ -26,15 +25,15 @@ public class DataSourceInitFunc implements InitFunc {
     // fill your namespace id,if you want to use namespace. for example: 0f5c7314-4983-4022-ad5a-347de1d1057d,you can get it on nacos's console
 //    private static final String NACOS_NAMESPACE_ID = "${namespace}";
 
-    private static final String NACOS_NAMESPACE_ID = "SENTINEL";
+    private static final String NACOS_NAMESPACE_ID = "a9c67ec0-364d-443d-8dd2-f2959e5e7325";
 
     @Override
-    public void init() throws Exception{
+    public void init() throws Exception {
         Properties properties = new Properties();
         properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
-//        properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);
-        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, groupId,
-                dataId,
+        properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);
+
+        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, groupId, dataId,
                 source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
                 }));
         FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
@@ -48,9 +47,4 @@ public class DataSourceInitFunc implements InitFunc {
 //                ruleKey, channel, flowConfigParser);
 //        FlowRuleManager.register2Property(redisDataSource.getProperty());
     }
-
-//    private Converter<String, List<FlowRule>> buildFlowConfigParser() {
-//        return source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
-//        });
-//    }
 }

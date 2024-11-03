@@ -13,9 +13,9 @@ public class FilterConfig {
         FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new CommonFilter());
         registration.addUrlPatterns("/*");
+        registration.addInitParameter(CommonFilter.WEB_CONTEXT_UNIFY, "false");
         registration.setName("sentinelFilter");
         registration.setOrder(1);
-
         return registration;
     }
 }
