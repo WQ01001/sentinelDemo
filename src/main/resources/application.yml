@@ -12,4 +12,6 @@ server:
 #        port: 7890
 #        # 配置Sentinel dashboard地址
 #        dashboard: 127.0.0.1:8619
-
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE

@@ -17,6 +17,7 @@ package org.example.sentineldemo.controller;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import org.example.sentineldemo.dto.TssParamDTO;
 import org.example.sentineldemo.service.FooService;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,9 +49,19 @@ public class DemoController {
 
     @GetMapping("/bonjour/{name}")
     public String apiSayHelloLocal(@PathVariable String name) {
-//        initFlowRules();
         return demoService.bonjour(name);
     }
+
+    @PostMapping("/tss")
+    public String tss(@RequestBody TssParamDTO tssParamDTO) {
+        return demoService.shamash(tssParamDTO);
+    }
+
+    @PostMapping("/task")
+    public String task(@RequestBody TssParamDTO tssParamDTO) {
+        return demoService.shamash(tssParamDTO);
+    }
+
 
     @GetMapping("/time")
     public long apiCurrentTime(@RequestParam(value = "slow", defaultValue = "false") Boolean slow) {
