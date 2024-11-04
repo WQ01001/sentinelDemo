@@ -33,7 +33,6 @@ public class SentinelRuleConfiguration implements ApplicationListener<ContextRef
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        System.out.println("Init DataSourceInitFunc Auto");
         Properties properties = new Properties();
         properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
         properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);

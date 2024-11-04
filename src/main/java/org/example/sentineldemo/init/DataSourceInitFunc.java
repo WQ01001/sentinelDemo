@@ -25,7 +25,7 @@ public class DataSourceInitFunc implements InitFunc {
     // fill your namespace id,if you want to use namespace. for example: 0f5c7314-4983-4022-ad5a-347de1d1057d,you can get it on nacos's console
 //    private static final String NACOS_NAMESPACE_ID = "${namespace}";
 
-    private static final String NACOS_NAMESPACE_ID = "a9c67ec0-364d-443d-8dd2-f2959e5e7325";
+    private static final String NACOS_NAMESPACE_ID = "rims";
 
     @Override
     public void init() throws Exception {
