@@ -68,6 +68,11 @@ public class DemoService {
         return "request T13: " + tssParamDTO;
     }
 
+    @SentinelResource(value = "R13", defaultFallback = "bonjourFallback")
+    public String R13(TssParamDTO tssParamDTO) {
+        return "request R13: " + tssParamDTO;
+    }
+
     @SentinelResource(value = "T9", defaultFallback = "bonjourFallback")
     public String T9(TssParamDTO tssParamDTO) {
         return "T9: " + tssParamDTO;

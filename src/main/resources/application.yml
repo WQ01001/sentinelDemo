@@ -8,70 +8,9 @@ spring:
       transport:
         #Sentinel控制台地址
         dashboard: 127.0.0.1:8858
-        eager: true
+#        eager: true
         #当前服务的ip
 #        clientIp: 127.0.0.1
         port: 8719
-#      datasource:
-        #================流控===============
-#        flow:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-            #与sentinel控制台的namespeace统一
-#            namespace: rims
-            #nacos中存储规则的dataId,对于dataId使用了${spring.application.name}变量，这样可以根据应用名来区分不同的规则配置
-#            data-id: ${spring.application.name}-flow-rules
-            #nacos中存储规则的groupId（可以自己定义）
-#            group-id: SENTINEL_GROUP
-            #具体的类型见，org.springframework.cloud.alibaba.sentinel.datasource.RuleType
-#            rule-type: flow
-#            data-type: json
-            #nacos的用户名和密码
-#            username: nacos
-#            password: nacos
-#        #================流控===============
-#        degrade:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-#            namespace: a9c67ec0-364d-443d-8dd2-f2959e5e7325
-#            data-id: ${spring.application.name}-degrade-rules
-#            group-id: SENTINEL_GROUP
-#            rule-type: degrade
-#            data-type: json
-##            username: nacos
-##            password: nacos
-#        #================系统规则===============
-#        system:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-#            namespace: a9c67ec0-364d-443d-8dd2-f2959e5e7325
-#            data-id: ${spring.application.name}-system-rules
-#            group-id: SENTINEL_GROUP
-#            rule-type: system
-#            data-type: json
-##            username: nacos
-##            password: nacos
-#        #================授权规则===============
-#        authority:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-#            namespace: a9c67ec0-364d-443d-8dd2-f2959e5e7325
-#            data-id: ${spring.application.name}-authority-rules
-#            group-id: SENTINEL_GROUP
-#            rule-type: authority
-#            data-type: json
-##            username: nacos
-##            password: nacos
-#        #================热点规则===============
-#        param-flow:
-#          nacos:
-#            server-addr: 127.0.0.1:8848
-#            namespace: a9c67ec0-364d-443d-8dd2-f2959e5e7325
-#            data-id: ${spring.application.name}-param-flow-rules
-#            group-id: SENTINEL_GROUP
-#            rule-type: param-flow
-#            data-type: json
-#            username: nacos
-#            password: nacos
   jackson:
     property-naming-strategy: SNAKE_CASE

@@ -28,7 +28,7 @@ public class DataSourceInitFunc implements InitFunc {
     private static final String NACOS_NAMESPACE_ID = "rims";
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         Properties properties = new Properties();
         properties.put(PropertyKeyConst.SERVER_ADDR, remoteAddress);
         properties.put(PropertyKeyConst.NAMESPACE, NACOS_NAMESPACE_ID);

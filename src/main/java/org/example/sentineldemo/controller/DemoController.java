@@ -57,6 +57,26 @@ public class DemoController {
         return demoService.shamash(tssParamDTO);
     }
 
+    @GetMapping("/t13")
+    public String t13() {
+        return demoService.T13(new TssParamDTO());
+    }
+
+    @GetMapping("/r13")
+    public String r13() {
+        return demoService.T13(new TssParamDTO());
+    }
+
+    @GetMapping("/t9")
+    public String t9() {
+        return demoService.T9(new TssParamDTO());
+    }
+
+    @GetMapping("/t20")
+    public String t20() {
+        return demoService.T20(new TssParamDTO());
+    }
+
     @PostMapping("/task")
     public String task(@RequestBody TssParamDTO tssParamDTO) {
         return demoService.shamash(tssParamDTO);
