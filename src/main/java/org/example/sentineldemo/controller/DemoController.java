@@ -14,16 +14,11 @@
 
 package org.example.sentineldemo.controller;
 
-import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import org.example.sentineldemo.dto.TssParamDTO;
 import org.example.sentineldemo.service.FooService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
